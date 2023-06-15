@@ -1,0 +1,27 @@
+<% include template/header %>
+<div class="container">
+    <div class="row">
+        <!-- FORM-->
+        <div class="col-md-5 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/editarRegistro/<%= task._id%>" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="nombre" placeholder="Inserta un nombre" class="form-control" value="<%= task.nombre%>">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="apellido" placeholder="Inserta un apellido" class="form-control" value="<%= task.apellido%>">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="informacion" cols="30" class="form-control" placeholder="Ingrese informacion adicional"><%= task.informacion%></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Actualizar Registro
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div> 
+<% include template/footer %>

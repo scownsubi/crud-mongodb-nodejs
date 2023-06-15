@@ -1,0 +1,83 @@
+<% include template/header %>
+
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <a href="/obtenerRegistros" class="navbar-brand"> <%= titulo %></a>
+    </nav>
+
+    <!-- <%= tasks %> -->
+    <%= titulo %>
+    <p><%= titulo %></p>
+    
+    <h1><%= framework[0].nombre %> - <%= framework[0].inicio %></h1>
+    <h1><%= framework[1].nombre %> - <%= framework[1].inicio %></h1>
+    <div class="container">
+        <div class="row">
+            <!-- FORM-->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/agregarRegistro" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="nombre" 
+                                placeholder="Inserta un nombre" 
+                                class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="apellido" 
+                                placeholder="Inserta un apellido" 
+                                class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="informacion" cols="30" 
+                                class="form-control" 
+                                placeholder="Ingrese informacion adicional"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Agregar Registro
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LIST -->
+            <div class="col-md-7">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Informacion</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < tasks.length; i++) { %>
+                            <!-- <p><%=tasks[i]%></p> -->
+                            <tr>
+                                <td><%= i + 1 %></td>
+                                <td><%= tasks[i].nombre %></td>
+                                <td><%= tasks[i].apellido %></td>
+                                <td><%= tasks[i].informacion %></td>
+                                <td>
+                                    <a href="/hecho/<%= tasks[i]._id%>" 
+                                        class="btn <%= tasks[i].estadocivil ? 'btn-success' 
+                                        : 'btn-dark' %>">
+                                        H</a>
+
+                                    <a href="/eliminarRegistro/<%= tasks[i]._id%>" 
+                                        class="btn btn-danger">E</a>
+
+                                    <a href="/editarRegistro/<%= tasks[i]._id%>" 
+                                        class="btn btn-info">A</a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+   
+<% include template/footer %>
